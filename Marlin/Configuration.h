@@ -163,7 +163,7 @@
  *
  * :[3, 4, 5, 6]
  */
-//#define LINEAR_AXES 3
+//#define LINEAR_AXES 3 
 
 /**
  * Axis codes for additional axes:
@@ -192,7 +192,7 @@
 
 // This defines the number of extruders
 // :[0, 1, 2, 3, 4, 5, 6, 7, 8]
-#define EXTRUDERS 1
+#define EXTRUDERS 1 //2 works for T0/T1 control of both extruders
 
 // Generally expected filament diameter (1.75, 2.85, 3.0, ...). Used for Volumetric, Filament Width Sensor, etc.
 #define DEFAULT_NOMINAL_FILAMENT_DIA 1.75
@@ -710,7 +710,7 @@
  *
  * *** IT IS HIGHLY RECOMMENDED TO LEAVE THIS OPTION ENABLED! ***
  */
-#define PREVENT_COLD_EXTRUSION
+//#define PREVENT_COLD_EXTRUSION // it's a nuisance to have enabled
 #define EXTRUDE_MINTEMP 200
 
 /**
@@ -1853,9 +1853,15 @@
 
 #define PREHEAT_2_LABEL       "230 C"
 #define PREHEAT_2_TEMP_HOTEND 230
-#define PREHEAT_2_TEMP_BED    0
+#define PREHEAT_2_TEMP_BED     0
 #define PREHEAT_2_TEMP_CHAMBER 0
 #define PREHEAT_2_FAN_SPEED     0 // Value from 0 to 255
+
+#define PREHEAT_3_LABEL       "Fan Cool"
+#define PREHEAT_3_TEMP_HOTEND 1
+#define PREHEAT_3_TEMP_BED    0
+#define PREHEAT_3_TEMP_CHAMBER 0
+#define PREHEAT_3_FAN_SPEED     255 // Value from 0 to 255
 
 /**
  * Nozzle Park

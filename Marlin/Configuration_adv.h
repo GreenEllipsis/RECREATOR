@@ -513,7 +513,7 @@
  *
  * Define one or both of these to override the default 0-255 range.
  */
-//#define FAN_MIN_PWM 50
+#define FAN_MIN_PWM 64 // mine required 25% to start
 //#define FAN_MAX_PWM 128
 
 /**
@@ -670,9 +670,9 @@
 //
 // For Z set the number of stepper drivers
 //
-#define NUM_Z_STEPPER_DRIVERS 1   // (1-4) Z options change based on how many
+#define NUM_Z_STEPPER_DRIVERS 1 // (1-4) Z options change based on how many
 
-#if NUM_Z_STEPPER_DRIVERS > 1
+#if NUM_Z_STEPPER_DRIVERS >  1
   // Enable if Z motor direction signals are the opposite of Z1
   //#define INVERT_Z2_VS_Z_DIR
   //#define INVERT_Z3_VS_Z_DIR
@@ -694,7 +694,7 @@
 #endif
 
 // Drive the E axis with two synchronized steppers
-//#define E_DUAL_STEPPER_DRIVERS
+#define E_DUAL_STEPPER_DRIVERS
 #if ENABLED(E_DUAL_STEPPER_DRIVERS)
   //#define INVERT_E1_VS_E0_DIR   // Enable if the E motors need opposite DIR states
 #endif
@@ -4145,7 +4145,7 @@
 //
 // M42 - Set pin states
 //
-//#define DIRECT_PIN_CONTROL
+#define DIRECT_PIN_CONTROL
 
 //
 // M43 - display pin status, toggle pins, watch pins, watch endstops & toggle LED, test servo probe
