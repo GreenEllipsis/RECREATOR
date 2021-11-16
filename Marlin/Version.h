@@ -34,19 +34,19 @@
  * Verbose version identifier which should contain a reference to the location
  * from where the binary was downloaded or the source code was compiled.
  */
-#define DETAILED_BUILD_VERSION "Josh Taylor's Recreator 3D"
+#define DETAILED_BUILD_VERSION "https://github.com/GreenEllipsis/RECREATOR"
 
 /**
  * The STRING_DISTRIBUTION_DATE represents when the binary file was built,
  * here we define this default string as the date where the latest release
  * version was tagged.
  */
-#define STRING_DISTRIBUTION_DATE "2021-10-01"
+#define STRING_DISTRIBUTION_DATE "2021-11-15"
 
 /**
  * Defines a generic printer name to be output to the LCD after booting Marlin.
  */
-#define MACHINE_NAME "RECREATOR 3D"
+#define MACHINE_NAME "RECREATOR 3D PRO"
 
 /**
  * The SOURCE_CODE_URL is the location where users will find the Marlin Source
