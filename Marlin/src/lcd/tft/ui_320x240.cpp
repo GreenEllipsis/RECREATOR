@@ -284,25 +284,25 @@ void MarlinUI::draw_status_screen() {
   //TERN_(TOUCH_SCREEN, touch.add_control(MOVE_AXIS, 0, 103, 312, 24));
 
   // feed rate
-  //tft.canvas(70, 136, 80, 32);
-  //tft.set_background(COLOR_BACKGROUND);
-  //uint16_t color = feedrate_percentage == 100 ? COLOR_RATE_100 : COLOR_RATE_ALTERED;
-  //tft.add_image(0, 0, imgFeedRate, color);
-  //tft_string.set(i16tostr3rj(feedrate_percentage));
-  //tft_string.add('%');
-  //tft.add_text(32, 6, color , tft_string);
-  //TERN_(TOUCH_SCREEN, touch.add_control(FEEDRATE, 70, 136, 80, 32));
+  tft.canvas(70, 136, 80, 32);
+  tft.set_background(COLOR_BACKGROUND);
+  uint16_t color = feedrate_percentage == 100 ? COLOR_RATE_100 : COLOR_RATE_ALTERED;
+  tft.add_image(0, 0, imgFeedRate, color);
+  tft_string.set(i16tostr3rj(feedrate_percentage));
+  tft_string.add('%');
+  tft.add_text(32, 6, color , tft_string);
+  TERN_(TOUCH_SCREEN, touch.add_control(FEEDRATE, 70, 136, 80, 32));
 
   // flow rate ---- COMMENTED OUT FOR 3D RECREATOR
-  tft.canvas(110, 136, 85, 32);
+  tft.canvas(148, 136, 53, 32);
   tft.set_background(COLOR_BACKGROUND);
   //color = planner.flow_percentage[0] == 100 ? COLOR_RATE_100 : COLOR_RATE_ALTERED;
-  uint16_t color = e_move_accumulator ? COLOR_RATE_100 : COLOR_RATE_ALTERED;
-  tft.add_image(0, 0, imgFlowRate, color);
+  color = e_move_accumulator ? COLOR_RATE_100 : COLOR_RATE_ALTERED;
+  // tft.add_image(0, 0, imgFlowRate, color);
   //tft_string.set(i16tostr3rj(planner.flow_percentage[active_extruder]));
   tft_string.set(ui16tostr5rj(e_move_accumulator));
   tft_string.add('E');
-  tft.add_text(32, 6, color , tft_string);
+  tft.add_text(0, 6, color , tft_string);
   //TERN_(TOUCH_SCREEN, touch.add_control(MENU_SCREEN, 170, 136, 80, 32));
 
   // print duration

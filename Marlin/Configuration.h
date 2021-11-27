@@ -916,6 +916,7 @@
  * Default Axis Steps Per Unit (steps/mm)
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
+ * Spool diameter: 51. 
  */
 #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 110 }
 
@@ -2107,7 +2108,7 @@
  * just remove some extraneous menu items to recover space.
  */
 //#define NO_LCD_MENUS
-#define SLIM_LCD_MENUS
+//#define SLIM_LCD_MENUS
 
 //
 // ENCODER SETTINGS
