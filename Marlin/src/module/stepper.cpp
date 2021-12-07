@@ -2657,8 +2657,8 @@ void Stepper::init() {
   #if E_STEPPERS && HAS_E0_STEP
     E_AXIS_INIT(0);
   #endif
-  #if (E_STEPPERS > 1 || ENABLED(E_DUAL_STEPPER_DRIVERS)) && HAS_E1_STEP
-    E_AXIS_INIT(1);
+  #if (E_STEPPERS > 1 || ENABLED(E_DUAL_STEPPER_DRIVERS)) && HAS_E1_STEP // adapted from 2.0.9.2
+   E_AXIS_INIT(1);
   #endif
   #if E_STEPPERS > 2 && HAS_E2_STEP
     E_AXIS_INIT(2);

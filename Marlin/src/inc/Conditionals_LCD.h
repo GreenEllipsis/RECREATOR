@@ -573,7 +573,7 @@
 #if ENABLED(E_DUAL_STEPPER_DRIVERS) // E0/E1 steppers act in tandem as E0
 
   #define E_STEPPERS      2
-  #define E_MANUAL         1 // copied from 2.0.9.2
+  #define E_MANUAL        1         // copied from 2.0.9.2 to fix dual E steppers
 
 #elif ENABLED(SWITCHING_EXTRUDER)   // One stepper for every two EXTRUDERS
 

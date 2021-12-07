@@ -846,9 +846,10 @@ void reset_stepper_drivers();    // Called by settings.load / settings.reset
   #endif
 #endif
 
-#ifndef ENABLE_STEPPER_E1 // added bugfix from 2.0.9.2
+// added bugfix from 2.0.9.2 for E_DUAL_STEPPER_DRIVERS
+#ifndef ENABLE_STEPPER_E1
   #if (E_STEPPERS > 1 || ENABLED(E_DUAL_STEPPER_DRIVERS)) && HAS_E1_ENABLE
-    #define  ENABLE_STEPPER_E1() E1_ENABLE_WRITE( E_ENABLE_ON)
+     #define  ENABLE_STEPPER_E1() E1_ENABLE_WRITE( E_ENABLE_ON)
   #else
     #define  ENABLE_STEPPER_E1() NOOP
   #endif
