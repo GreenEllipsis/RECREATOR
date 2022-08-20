@@ -3505,14 +3505,28 @@
  *  34 RAMPS_14    : Analog input 5 on the AUX2 connector
  *  81 PRINTRBOARD : Analog input 2 on the Exp1 connector (version B,C,D,E)
  * 301 RAMBO       : Analog input 3
+ *     MKS_ROBIN_NANO : uses FILWIDTH_PIN
  *
  * Note: May require analog pins to be defined for other boards.
  */
-//#define FILAMENT_WIDTH_SENSOR
+#define FILAMENT_WIDTH_SENSOR
+
+#define FILWIDTH_CUSTOM 
+#if ENABLED(FILWIDTH_CUSTOM)
+  // Linear interpolation is performed between the nearest calibration points. 
+  // First column is raw analog read value, second column is diameter in mm.
+  #define FILWIDTH_TABLE \
+  { 0     , 3.000 }, \
+  { 300   , 2.090 }, \
+  { 1000   , 1.700 }, \
+  { 2000   , 1.400 }, \
+  { 4000  , 1.000 }, \
+  { 16383  , 0.000 } //safety; do not change this line
+#endif
 
 #if ENABLED(FILAMENT_WIDTH_SENSOR)
   #define FILAMENT_SENSOR_EXTRUDER_NUM 0    // Index of the extruder that has the filament sensor. :[0,1,2,3,4]
-  #define MEASUREMENT_DELAY_CM        14    // (cm) The distance from the filament sensor to the melting chamber
+  #define MEASUREMENT_DELAY_CM        0    // (cm) The distance from the filament sensor to the melting chamber
 
   #define FILWIDTH_ERROR_MARGIN        1.0  // (mm) If a measurement differs too much from nominal width ignore it
   #define MAX_MEASUREMENT_DELAY       20    // (bytes) Buffer size for stored measurements (1 byte per cm). Must be larger than MEASUREMENT_DELAY_CM.

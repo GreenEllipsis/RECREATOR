@@ -25,6 +25,14 @@
 #include "../module/planner.h"
 #include "../module/thermistor/thermistors.h"
 
+#if ENABLED(FILWIDTH_CUSTOM)
+struct filwidth_cal {
+  uint16_t raw;        
+  float mm;  //size in mm
+};
+static constexpr filwidth_cal filwidth_table[] PROGMEM = { FILWIDTH_TABLE };
+#endif
+
 class FilamentWidthSensor {
 public:
   static constexpr int MMD_CM = MAX_MEASUREMENT_DELAY + 1, MMD_MM = MMD_CM * 10;
@@ -62,12 +70,38 @@ public:
 
   // Apply a single ADC reading to the raw value
   static void accumulate(const uint16_t adc) {
+#if ENABLED(FILWIDTH_CUSTOM)
+    accum += (uint32_t(adc) << 7) - (accum >> 7);
+#else
     if (adc > 102)  // Ignore ADC under 0.5 volts
       accum += (uint32_t(adc) << 7) - (accum >> 7);
+#endif
   }
 
   // Convert raw measurement to mm
+#if ENABLED(FILWIDTH_CUSTOM)
+  //adapted from https://github.com/drspangle/infidel-sensor
+  static inline float raw_to_mm(const uint16_t v) { 
+    //converts an ADC reading to diameter
+    uint8_t i;
+    uint8_t n = COUNT(filwidth_table);
+    for (i = 1; i < n; i++)
+    {
+      //check if we've found the appropriate row
+      if (filwidth_table[i].raw > v)
+      {
+        float slope = ((float)filwidth_table[i].mm - filwidth_table[i - 1].mm) / ((float)filwidth_table[i].raw - filwidth_table[i - 1].raw);
+        float indiff = ((float)v - filwidth_table[i - 1].raw);
+        float outdiff = slope * indiff;
+        return (outdiff + filwidth_table[i - 1].mm);
+        break;
+      }
+    }
+    return (float)(filwidth_table[n-1].mm); // should never get here
+  }
+#else
   static inline float raw_to_mm(const uint16_t v) { return v * 5.0f * RECIPROCAL(float(MAX_RAW_THERMISTOR_VALUE)); }
+#endif
   static inline float raw_to_mm() { return raw_to_mm(raw); }
 
   // A scaled reading is ready
